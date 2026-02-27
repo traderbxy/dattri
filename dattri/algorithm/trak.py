@@ -47,7 +47,7 @@ class TRAKAttributor(BaseAttributor):
         Args:
             task (AttributionTask): The task to be attributed. Please refer to the
                 `AttributionTask` for more details. For TRAK, the `loss_func`
-                in the classification task should typically be the log-odds ratio. 
+                in the classification task should typically be the log-odds ratio.
                 A typical example of such a function `f` is as follows:
                 ```python
                 def f(params, image_label_pair):

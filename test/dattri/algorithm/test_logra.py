@@ -5,8 +5,8 @@ from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
 from dattri.algorithm import LoGraAttributor
-from dattri.benchmark.datasets.mnist import train_mnist_lr
 from dattri.benchmark.datasets.cifar import train_cifar_resnet9
+from dattri.benchmark.datasets.mnist import train_mnist_lr
 from dattri.task import AttributionTask
 
 
@@ -87,7 +87,8 @@ class TestLoGraAttributor:
         score2 = self.attributor.attribute(self.train_loader, self.test_loader)
         assert torch.allclose(score1, score2)
 
-class TestLoGraAttributor_ResNet:
+
+class TestLoGraAttributorResNet:
     """Test suite for the LoGra attributor with ResNet."""
 
     def setup_method(self) -> None:
@@ -138,7 +139,8 @@ class TestLoGraAttributor_ResNet:
 
     def test_attribute(self) -> None:
         """Ensure attribution works with non-empty projectors."""
-        self.attributor.cache(self.train_loader) # This will fail if sample_inputs[0] is used due to dimension mismatch
+        # This will fail if sample_inputs[0] is used due to dimension mismatch
+        self.attributor.cache(self.train_loader)
         assert self.attributor.compressors, "Compressors should be initialized"
         assert self.attributor.layer_dims == [
             64,  # proj_dim = 64 (8*8)
